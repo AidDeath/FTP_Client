@@ -17,6 +17,7 @@ namespace FTP_try_1
     public partial class Form1 : Form
     {
         DriveInfo[] Drives = DriveInfo.GetDrives();
+        string LocalPath = "";
 
         public Form1()
         {
@@ -104,25 +105,41 @@ namespace FTP_try_1
         {
             label7.Text = "Свободно: " + (Drives[comboBox_Drive.SelectedIndex].AvailableFreeSpace) / 1024 / 1024 + " Мб";
             //обновляем свободное место диска
-            string CurrDisk = comboBox_Drive.Text;
 
+            LocalPath = comboBox_Drive.Text;
             dataGridView2.Rows.Clear();  // Чистим от старых данных 
+            ShowContents(LocalPath);
+        }
 
-            string[] dirlist = Directory.GetDirectories(CurrDisk);
-            foreach (string  current in dirlist)
+        private void ShowContents(string path)   //Вывод локальных файлов и папок
+        {
+            //Выводим папки
+            string[] dirlist = Directory.GetDirectories(path);
+            foreach (string current in dirlist)
             {
                 DirectoryInfo d = new DirectoryInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.dir, d.Name, "<DIR>" , d.CreationTime.ToShortDateString());
+                dataGridView2.Rows.Add(Properties.Resources.dir, d.Name, "<DIR>", d.CreationTime.ToShortDateString());
+
             }
 
-
-            string[] filelist = Directory.GetFiles(CurrDisk);
+            //Выводим файлы
+            string[] filelist = Directory.GetFiles(path);
             foreach (string current in filelist)
             {
                 FileInfo f = new FileInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.file, f.Name, f.Length /1024, f.CreationTime.ToShortDateString());
+                dataGridView2.Rows.Add(Properties.Resources.file, f.Name, f.Length / 1024, f.CreationTime.ToShortDateString());
 
             }
+        }
+
+        private void DataGridView2_DoubleClick(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection sel = dataGridView2.SelectedRows;
+            
+            string s = sel.Count.ToString();
+            string m sel.Contains.local_name;
+            MessageBox.Show(s , "asdf", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
     }
 }

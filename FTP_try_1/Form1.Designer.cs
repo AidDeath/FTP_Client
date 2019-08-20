@@ -51,14 +51,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_Drive = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Object_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Object_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.object_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ftp_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FTP_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FTP_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.local_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.local_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.local_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -75,6 +76,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -137,7 +139,7 @@
             // 
             this.checkBox_pwdsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_pwdsave.AutoSize = true;
-            this.checkBox_pwdsave.Location = new System.Drawing.Point(714, 45);
+            this.checkBox_pwdsave.Location = new System.Drawing.Point(583, 45);
             this.checkBox_pwdsave.Name = "checkBox_pwdsave";
             this.checkBox_pwdsave.Size = new System.Drawing.Size(159, 17);
             this.checkBox_pwdsave.TabIndex = 5;
@@ -147,7 +149,7 @@
             // button_connect
             // 
             this.button_connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_connect.Location = new System.Drawing.Point(714, 16);
+            this.button_connect.Location = new System.Drawing.Point(583, 16);
             this.button_connect.Name = "button_connect";
             this.button_connect.Size = new System.Drawing.Size(159, 23);
             this.button_connect.TabIndex = 4;
@@ -223,9 +225,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Image,
-            this.Object_name,
-            this.Object_size,
-            this.object_created});
+            this.ftp_name,
+            this.FTP_size,
+            this.FTP_created});
             this.dataGridView1.Location = new System.Drawing.Point(3, 108);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -246,9 +248,10 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewImageColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.Column1});
+            this.local_name,
+            this.local_size,
+            this.local_created});
+            this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataGridView2.Location = new System.Drawing.Point(500, 108);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
@@ -259,6 +262,7 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(430, 478);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.DoubleClick += new System.EventHandler(this.DataGridView2_DoubleClick);
             // 
             // label5
             // 
@@ -296,36 +300,14 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Свободно: ";
             // 
-            // dataGridViewImageColumn1
+            // button1
             // 
-            this.dataGridViewImageColumn1.FillWeight = 30F;
-            this.dataGridViewImageColumn1.Frozen = true;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.MinimumWidth = 40;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Имя";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 220;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Размер, Кб";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 75;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Создан";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 80;
+            this.button1.Location = new System.Drawing.Point(791, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(48, 46);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "S";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Image
             // 
@@ -337,26 +319,57 @@
             this.Image.ReadOnly = true;
             this.Image.Width = 40;
             // 
-            // Object_name
+            // ftp_name
             // 
-            this.Object_name.HeaderText = "Имя";
-            this.Object_name.Name = "Object_name";
-            this.Object_name.ReadOnly = true;
-            this.Object_name.Width = 220;
+            this.ftp_name.HeaderText = "Имя";
+            this.ftp_name.Name = "ftp_name";
+            this.ftp_name.ReadOnly = true;
+            this.ftp_name.Width = 220;
             // 
-            // Object_size
+            // FTP_size
             // 
-            this.Object_size.HeaderText = "Размер, Кб";
-            this.Object_size.Name = "Object_size";
-            this.Object_size.ReadOnly = true;
-            this.Object_size.Width = 71;
+            this.FTP_size.HeaderText = "Размер, Кб";
+            this.FTP_size.Name = "FTP_size";
+            this.FTP_size.ReadOnly = true;
+            this.FTP_size.Width = 71;
             // 
-            // object_created
+            // FTP_created
             // 
-            this.object_created.HeaderText = "Создан";
-            this.object_created.Name = "object_created";
-            this.object_created.ReadOnly = true;
-            this.object_created.Width = 80;
+            this.FTP_created.HeaderText = "Создан";
+            this.FTP_created.Name = "FTP_created";
+            this.FTP_created.ReadOnly = true;
+            this.FTP_created.Width = 80;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.FillWeight = 30F;
+            this.dataGridViewImageColumn1.Frozen = true;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.MinimumWidth = 40;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 40;
+            // 
+            // local_name
+            // 
+            this.local_name.HeaderText = "Имя";
+            this.local_name.Name = "local_name";
+            this.local_name.ReadOnly = true;
+            this.local_name.Width = 220;
+            // 
+            // local_size
+            // 
+            this.local_size.HeaderText = "Размер, Кб";
+            this.local_size.Name = "local_size";
+            this.local_size.ReadOnly = true;
+            this.local_size.Width = 75;
+            // 
+            // local_created
+            // 
+            this.local_created.HeaderText = "Создан";
+            this.local_created.Name = "local_created";
+            this.local_created.ReadOnly = true;
+            this.local_created.Width = 80;
             // 
             // Form1
             // 
@@ -411,14 +424,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_Drive;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewImageColumn Image;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Object_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Object_size;
-        private System.Windows.Forms.DataGridViewTextBoxColumn object_created;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ftp_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FTP_size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FTP_created;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn local_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn local_size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn local_created;
     }
 }
 
