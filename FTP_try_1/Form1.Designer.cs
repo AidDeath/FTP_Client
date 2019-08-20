@@ -148,11 +148,11 @@
             // 
             this.checkBox_pwdsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_pwdsave.AutoSize = true;
-            this.checkBox_pwdsave.Location = new System.Drawing.Point(583, 45);
+            this.checkBox_pwdsave.Location = new System.Drawing.Point(604, 42);
             this.checkBox_pwdsave.Name = "checkBox_pwdsave";
-            this.checkBox_pwdsave.Size = new System.Drawing.Size(159, 17);
+            this.checkBox_pwdsave.Size = new System.Drawing.Size(118, 17);
             this.checkBox_pwdsave.TabIndex = 5;
-            this.checkBox_pwdsave.Text = "Сохранять логин и пароль";
+            this.checkBox_pwdsave.Text = "Сохранять пароль";
             this.checkBox_pwdsave.UseVisualStyleBackColor = true;
             // 
             // button_connect

@@ -103,5 +103,8 @@
   <ItemGroup>
     <None Include="settings.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="failure.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

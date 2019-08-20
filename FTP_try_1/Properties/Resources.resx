@@ -124,6 +124,9 @@
   <data name="dir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\dir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="failure" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\failure.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="file" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

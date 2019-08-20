@@ -103,42 +103,58 @@ namespace FTP_try_1
 
         private void ShowLocalRootFiles(object sender, EventArgs e)
         {
-            label7.Text = "Свободно: " + (Drives[comboBox_Drive.SelectedIndex].AvailableFreeSpace) / 1024 / 1024 + " Мб";
-            //обновляем свободное место диска
+            try
+            {
+                label7.Text = "Свободно: " + (Drives[comboBox_Drive.SelectedIndex].AvailableFreeSpace) / 1024 / 1024 + " Мб";
+                //обновляем свободное место диска
 
-            LocalPath = comboBox_Drive.Text;
-            dataGridView2.Rows.Clear();  // Чистим от старых данных 
-            ShowContents(LocalPath);
+                LocalPath = comboBox_Drive.Text;
+                dataGridView2.Rows.Clear();  // Чистим от старых данных 
+                ShowContents(LocalPath);
+            }
+            catch (System.IO.IOException)
+            {
+                label7.Text = "Ошибка чтения раздела";
+                dataGridView2.Rows.Clear();
+                dataGridView2.Rows.Add(Properties.Resources.failure, "Ошибка раздела", "", "");
+            }
+            
         }
 
         private void ShowContents(string path)   //Вывод локальных файлов и папок
         {
             //Выводим папки
-         
-                string[] dirlist = Directory.GetDirectories(path)
+            try
+            {
+                string[] dirlist = Directory.GetDirectories(path);
+                foreach (string current in dirlist)
+                {
+                    DirectoryInfo d = new DirectoryInfo(current);
+                    dataGridView2.Rows.Add(Properties.Resources.folder, d.Name, "<DIR>", d.CreationTime.ToShortDateString());
+
+                }
+                //Выводим файлы
+                string[] filelist = Directory.GetFiles(path);
+                foreach (string current in filelist)
+                {
+                    FileInfo f = new FileInfo(current);
+                    dataGridView2.Rows.Add(Properties.Resources.file2, f.Name, f.Length / 1024, f.CreationTime.ToShortDateString());
+                 
+                }
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                dataGridView2.Rows.Add(Properties.Resources.failure, "Ошибка доступа", "", "");
+
+            }
             
-            foreach (string current in dirlist)
-            {
-                DirectoryInfo d = new DirectoryInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.folder, d.Name, "<DIR>", d.CreationTime.ToShortDateString());
-
-            }
-
-            //Выводим файлы
-            string[] filelist = Directory.GetFiles(path);
-            foreach (string current in filelist)
-            {
-                FileInfo f = new FileInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.file2, f.Name, f.Length / 1024, f.CreationTime.ToShortDateString());
-
-            }
         }
 
         private void DataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
             //// варианты:
-            ///выбрана папка - добавляем имя к пути, добавляем \, чистим строки, добавляем ..\ и содержимое папки
+            ///выбрана папка - добавляем имя к пути, добавляем \, чистим строки, добавляем ..\ и содержимое папки  W
             ///выбрано на 1ровень вверх - удалить строки - удалить из пути всё после последнего слеша и сам слеш - 
             ///                           если достигнут корень - не показывать ..\
             ///                           если не достигнут - добавить ..\ 
