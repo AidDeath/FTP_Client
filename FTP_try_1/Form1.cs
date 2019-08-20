@@ -137,7 +137,7 @@ namespace FTP_try_1
             DataGridViewSelectedRowCollection sel = dataGridView2.SelectedRows;
             
             string s = sel.Count.ToString();
-            string m sel.Contains.local_name;
+            //string m sel.Contains.local_name;
             MessageBox.Show(s , "asdf", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
         }
