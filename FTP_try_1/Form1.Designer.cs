@@ -31,6 +31,7 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,20 +47,19 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox_Drive = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.ftp_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FTP_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FTP_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.local_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.local_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.local_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_Drive = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -94,6 +94,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подключение к FTP";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(791, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(48, 46);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "S";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -239,6 +248,37 @@
             this.dataGridView1.Size = new System.Drawing.Size(430, 478);
             this.dataGridView1.TabIndex = 3;
             // 
+            // Image
+            // 
+            this.Image.FillWeight = 30F;
+            this.Image.Frozen = true;
+            this.Image.HeaderText = "";
+            this.Image.MinimumWidth = 40;
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            this.Image.Width = 40;
+            // 
+            // ftp_name
+            // 
+            this.ftp_name.HeaderText = "Имя";
+            this.ftp_name.Name = "ftp_name";
+            this.ftp_name.ReadOnly = true;
+            this.ftp_name.Width = 220;
+            // 
+            // FTP_size
+            // 
+            this.FTP_size.HeaderText = "Размер, Кб";
+            this.FTP_size.Name = "FTP_size";
+            this.FTP_size.ReadOnly = true;
+            this.FTP_size.Width = 71;
+            // 
+            // FTP_created
+            // 
+            this.FTP_created.HeaderText = "Создан";
+            this.FTP_created.Name = "FTP_created";
+            this.FTP_created.ReadOnly = true;
+            this.FTP_created.Width = 80;
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -262,7 +302,38 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(430, 478);
             this.dataGridView2.TabIndex = 4;
-            this.dataGridView2.DoubleClick += new System.EventHandler(this.DataGridView2_DoubleClick);
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellDoubleClick);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.FillWeight = 30F;
+            this.dataGridViewImageColumn1.Frozen = true;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.MinimumWidth = 40;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 40;
+            // 
+            // local_name
+            // 
+            this.local_name.HeaderText = "Имя";
+            this.local_name.Name = "local_name";
+            this.local_name.ReadOnly = true;
+            this.local_name.Width = 220;
+            // 
+            // local_size
+            // 
+            this.local_size.HeaderText = "Размер, Кб";
+            this.local_size.Name = "local_size";
+            this.local_size.ReadOnly = true;
+            this.local_size.Width = 75;
+            // 
+            // local_created
+            // 
+            this.local_created.HeaderText = "Создан";
+            this.local_created.Name = "local_created";
+            this.local_created.ReadOnly = true;
+            this.local_created.Width = 80;
             // 
             // label5
             // 
@@ -299,77 +370,6 @@
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 8;
             this.label7.Text = "Свободно: ";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(791, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 46);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "S";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Image
-            // 
-            this.Image.FillWeight = 30F;
-            this.Image.Frozen = true;
-            this.Image.HeaderText = "";
-            this.Image.MinimumWidth = 40;
-            this.Image.Name = "Image";
-            this.Image.ReadOnly = true;
-            this.Image.Width = 40;
-            // 
-            // ftp_name
-            // 
-            this.ftp_name.HeaderText = "Имя";
-            this.ftp_name.Name = "ftp_name";
-            this.ftp_name.ReadOnly = true;
-            this.ftp_name.Width = 220;
-            // 
-            // FTP_size
-            // 
-            this.FTP_size.HeaderText = "Размер, Кб";
-            this.FTP_size.Name = "FTP_size";
-            this.FTP_size.ReadOnly = true;
-            this.FTP_size.Width = 71;
-            // 
-            // FTP_created
-            // 
-            this.FTP_created.HeaderText = "Создан";
-            this.FTP_created.Name = "FTP_created";
-            this.FTP_created.ReadOnly = true;
-            this.FTP_created.Width = 80;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.FillWeight = 30F;
-            this.dataGridViewImageColumn1.Frozen = true;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.MinimumWidth = 40;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 40;
-            // 
-            // local_name
-            // 
-            this.local_name.HeaderText = "Имя";
-            this.local_name.Name = "local_name";
-            this.local_name.ReadOnly = true;
-            this.local_name.Width = 220;
-            // 
-            // local_size
-            // 
-            this.local_size.HeaderText = "Размер, Кб";
-            this.local_size.Name = "local_size";
-            this.local_size.ReadOnly = true;
-            this.local_size.Width = 75;
-            // 
-            // local_created
-            // 
-            this.local_created.HeaderText = "Создан";
-            this.local_created.Name = "local_created";
-            this.local_created.ReadOnly = true;
-            this.local_created.Width = 80;
             // 
             // Form1
             // 

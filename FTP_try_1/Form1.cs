@@ -114,11 +114,13 @@ namespace FTP_try_1
         private void ShowContents(string path)   //Вывод локальных файлов и папок
         {
             //Выводим папки
-            string[] dirlist = Directory.GetDirectories(path);
+         
+                string[] dirlist = Directory.GetDirectories(path)
+            
             foreach (string current in dirlist)
             {
                 DirectoryInfo d = new DirectoryInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.dir, d.Name, "<DIR>", d.CreationTime.ToShortDateString());
+                dataGridView2.Rows.Add(Properties.Resources.folder, d.Name, "<DIR>", d.CreationTime.ToShortDateString());
 
             }
 
@@ -127,19 +129,59 @@ namespace FTP_try_1
             foreach (string current in filelist)
             {
                 FileInfo f = new FileInfo(current);
-                dataGridView2.Rows.Add(Properties.Resources.file, f.Name, f.Length / 1024, f.CreationTime.ToShortDateString());
+                dataGridView2.Rows.Add(Properties.Resources.file2, f.Name, f.Length / 1024, f.CreationTime.ToShortDateString());
 
             }
         }
 
-        private void DataGridView2_DoubleClick(object sender, EventArgs e)
+        private void DataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewSelectedRowCollection sel = dataGridView2.SelectedRows;
+
+            //// варианты:
+            ///выбрана папка - добавляем имя к пути, добавляем \, чистим строки, добавляем ..\ и содержимое папки
+            ///выбрано на 1ровень вверх - удалить строки - удалить из пути всё после последнего слеша и сам слеш - 
+            ///                           если достигнут корень - не показывать ..\
+            ///                           если не достигнут - добавить ..\ 
+            ///                     вызвать заполнение списком файлов
+            ///         выбран файл - ничего не делать, пока...
+            ///         
+
+            switch (dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString())
+            {
+                case ("<DIR>"):
+                    {// папка
+                        LocalPath += dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString() + "\\";
+                        dataGridView2.Rows.Clear();
+                        dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");
+                        ShowContents(LocalPath);
+                        break;
+                    }
+                case (""):
+                    {//назад
+                        if (true)
+                        {//сверху уже корень
+
+                        }
+                        else
+                        {//сверху не корень
+
+                        }
+                        break;
+                    }
+               
+                default:
+                    {// файл
+                        break;
+                    }
+                   
+            }
+
+
+
             
-            string s = sel.Count.ToString();
-            //string m sel.Contains.local_name;
-            MessageBox.Show(s , "asdf", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+
+         //   MessageBox.Show(s, "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+           
         }
     }
 }
