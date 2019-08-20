@@ -46,16 +46,19 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Object_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Object_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_Drive = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Image = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Object_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Object_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.object_created = new System.Windows.Forms.DataGridViewTextBoxColumn();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -85,7 +88,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(724, 81);
+            this.groupBox1.Size = new System.Drawing.Size(934, 81);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подключение к FTP";
@@ -134,7 +137,7 @@
             // 
             this.checkBox_pwdsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_pwdsave.AutoSize = true;
-            this.checkBox_pwdsave.Location = new System.Drawing.Point(504, 45);
+            this.checkBox_pwdsave.Location = new System.Drawing.Point(714, 45);
             this.checkBox_pwdsave.Name = "checkBox_pwdsave";
             this.checkBox_pwdsave.Size = new System.Drawing.Size(159, 17);
             this.checkBox_pwdsave.TabIndex = 5;
@@ -144,7 +147,7 @@
             // button_connect
             // 
             this.button_connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_connect.Location = new System.Drawing.Point(504, 16);
+            this.button_connect.Location = new System.Drawing.Point(714, 16);
             this.button_connect.Name = "button_connect";
             this.button_connect.Size = new System.Drawing.Size(159, 23);
             this.button_connect.TabIndex = 4;
@@ -195,7 +198,7 @@
             this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(724, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -221,8 +224,9 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Image,
             this.Object_name,
-            this.Object_size});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 108);
+            this.Object_size,
+            this.object_created});
+            this.dataGridView1.Location = new System.Drawing.Point(3, 108);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -230,32 +234,8 @@
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(343, 478);
+            this.dataGridView1.Size = new System.Drawing.Size(430, 478);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // Image
-            // 
-            this.Image.FillWeight = 30F;
-            this.Image.Frozen = true;
-            this.Image.HeaderText = "";
-            this.Image.MinimumWidth = 40;
-            this.Image.Name = "Image";
-            this.Image.ReadOnly = true;
-            this.Image.Width = 40;
-            // 
-            // Object_name
-            // 
-            this.Object_name.HeaderText = "Имя";
-            this.Object_name.Name = "Object_name";
-            this.Object_name.ReadOnly = true;
-            this.Object_name.Width = 220;
-            // 
-            // Object_size
-            // 
-            this.Object_size.HeaderText = "Размер";
-            this.Object_size.Name = "Object_size";
-            this.Object_size.ReadOnly = true;
-            this.Object_size.Width = 71;
             // 
             // dataGridView2
             // 
@@ -267,8 +247,9 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewImageColumn1,
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dataGridView2.Location = new System.Drawing.Point(381, 108);
+            this.dataGridViewTextBoxColumn2,
+            this.Column1});
+            this.dataGridView2.Location = new System.Drawing.Point(500, 108);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
@@ -276,8 +257,44 @@
             this.dataGridView2.RowTemplate.Height = 40;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(343, 478);
+            this.dataGridView2.Size = new System.Drawing.Size(430, 478);
             this.dataGridView2.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(526, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Локальный компьютер";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "FTP - сервер";
+            // 
+            // comboBox_Drive
+            // 
+            this.comboBox_Drive.FormattingEnabled = true;
+            this.comboBox_Drive.Location = new System.Drawing.Point(657, 81);
+            this.comboBox_Drive.Name = "comboBox_Drive";
+            this.comboBox_Drive.Size = new System.Drawing.Size(51, 21);
+            this.comboBox_Drive.TabIndex = 7;
+            this.comboBox_Drive.SelectedIndexChanged += new System.EventHandler(this.ShowLocalRootFiles);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(714, 89);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Свободно: ";
             // 
             // dataGridViewImageColumn1
             // 
@@ -298,42 +315,55 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Размер";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Размер, Кб";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 71;
+            this.dataGridViewTextBoxColumn2.Width = 75;
             // 
-            // label5
+            // Column1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(397, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Локальный компьютер";
+            this.Column1.HeaderText = "Создан";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 80;
             // 
-            // label6
+            // Image
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "FTP - сервер";
+            this.Image.FillWeight = 30F;
+            this.Image.Frozen = true;
+            this.Image.HeaderText = "";
+            this.Image.MinimumWidth = 40;
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            this.Image.Width = 40;
             // 
-            // comboBox_Drive
+            // Object_name
             // 
-            this.comboBox_Drive.FormattingEnabled = true;
-            this.comboBox_Drive.Location = new System.Drawing.Point(609, 84);
-            this.comboBox_Drive.Name = "comboBox_Drive";
-            this.comboBox_Drive.Size = new System.Drawing.Size(54, 21);
-            this.comboBox_Drive.TabIndex = 7;
+            this.Object_name.HeaderText = "Имя";
+            this.Object_name.Name = "Object_name";
+            this.Object_name.ReadOnly = true;
+            this.Object_name.Width = 220;
+            // 
+            // Object_size
+            // 
+            this.Object_size.HeaderText = "Размер, Кб";
+            this.Object_size.Name = "Object_size";
+            this.Object_size.ReadOnly = true;
+            this.Object_size.Width = 71;
+            // 
+            // object_created
+            // 
+            this.object_created.HeaderText = "Создан";
+            this.object_created.Name = "object_created";
+            this.object_created.ReadOnly = true;
+            this.object_created.Width = 80;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 611);
+            this.ClientSize = new System.Drawing.Size(934, 611);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox_Drive);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -343,8 +373,8 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(740, 650);
-            this.MinimumSize = new System.Drawing.Size(740, 650);
+            this.MaximumSize = new System.Drawing.Size(950, 650);
+            this.MinimumSize = new System.Drawing.Size(950, 650);
             this.Name = "Form1";
             this.Text = "Simple FTP Client";
             this.groupBox1.ResumeLayout(false);
@@ -376,16 +406,19 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewImageColumn Image;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Object_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Object_size;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_Drive;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewImageColumn Image;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Object_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Object_size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn object_created;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
 
