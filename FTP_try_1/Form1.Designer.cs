@@ -68,8 +68,9 @@
             // 
             // toolStripStatusLabel2
             // 
+            toolStripStatusLabel2.AutoSize = false;
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
+            toolStripStatusLabel2.Size = new System.Drawing.Size(200, 17);
             toolStripStatusLabel2.Text = "Нет активности";
             // 
             // groupBox1
@@ -204,15 +205,18 @@
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(106, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(200, 17);
             this.toolStripStatusLabel1.Text = "Нет подключения";
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripProgressBar1.AutoSize = false;
+            this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(150, 3, 1, 3);
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(250, 16);
             // 
             // dataGridView1
             // 

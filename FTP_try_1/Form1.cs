@@ -21,6 +21,8 @@ namespace FTP_try_1
     {
         DriveInfo[] Drives = DriveInfo.GetDrives();
         string LocalPath = "";
+        FtpClient client = new FtpClient();
+        int TimeoutFTP = 30000; //Таймаут.
 
         public Form1()
         {
@@ -79,11 +81,42 @@ namespace FTP_try_1
                 }
             Properties.Settings.Default.Save();   // Сохранено
 
+            //FtpClient client = new FtpClient();
 
-          
-           
-            dataGridView1.Rows.Add(Properties.Resources.dir, "File_or_folder_name", "size_of_it", "created_date");
-                     
+            //Задаём параметры клиента.
+            client.PassiveMode = true; //Включаем пассивный режим.
+            
+            string FTP_SERVER = textBox_hostname.Text;
+            int FTP_PORT = Convert.ToInt32(textBox_port.Text);
+            string FTP_USER = textBox_login.Text;
+            string FTP_PASSWORD = textBox_pwd.Text;
+            FtpResponse ftpResponse;
+            try
+            {
+                ftpResponse = client.Connect(TimeoutFTP, FTP_SERVER, FTP_PORT);
+                if (ftpResponse.Code == 220)
+                {
+                    toolStripStatusLabel1.Text = "Аутентфикация";
+                }
+                client.Login(TimeoutFTP, FTP_USER, FTP_PASSWORD);
+                toolStripStatusLabel1.Text = "Подключено к " + FTP_SERVER;
+                // MessageBox.Show(ftpResponse.Code.ToString(), "Hello!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+
+                ShowFTPContents();
+
+            }
+            catch(System.Net.Sockets.SocketException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            catch (BytesRoad.Net.Ftp.FtpErrorException)
+            {
+                MessageBox.Show("Неверный логин или пароль", "Ошибка аутентфикации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                client.Disconnect(TimeoutFTP);
+                toolStripStatusLabel1.Text += " -- не пройдена";
+            }
+
 
         }
 
@@ -134,6 +167,26 @@ namespace FTP_try_1
 
             }
             
+        }
+
+        private void ShowFTPContents()
+        {
+            FtpItem[] ftpitem = client.GetDirectoryList(TimeoutFTP);
+
+            foreach (FtpItem current in ftpitem)
+            {                                         // Выводим папки на фтп
+                if (current.ItemType.ToString() == "Directory")
+                {
+                    dataGridView1.Rows.Add(Properties.Resources.folder, current.Name, "<DIR>", current.Date);
+                }
+            }
+            foreach (FtpItem current in ftpitem)
+            {                                            // Выводим файлы на фтп
+                if (current.ItemType.ToString() == "File")
+                {
+                    dataGridView1.Rows.Add(Properties.Resources.file2, current.Name, current.Size / 1024, current.Date);
+                }
+            }
         }
 
         private void DataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
