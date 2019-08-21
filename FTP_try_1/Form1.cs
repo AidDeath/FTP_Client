@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 
+using BytesRoad.Net.Ftp;     //Сторонние библиотеки для работы с ФТП. для форка   
+using BytesRoad.Net.Sockets;
+
 
 namespace FTP_try_1
 {
