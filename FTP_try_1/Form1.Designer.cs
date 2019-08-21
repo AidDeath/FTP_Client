@@ -31,7 +31,6 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,7 +75,6 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -95,21 +93,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подключение к FTP";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(791, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 46);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "S";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 46);
+            this.label4.Location = new System.Drawing.Point(342, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 9;
@@ -120,7 +109,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(294, 23);
+            this.label3.Location = new System.Drawing.Point(342, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 8;
@@ -148,7 +137,7 @@
             // 
             this.checkBox_pwdsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_pwdsave.AutoSize = true;
-            this.checkBox_pwdsave.Location = new System.Drawing.Point(604, 42);
+            this.checkBox_pwdsave.Location = new System.Drawing.Point(687, 42);
             this.checkBox_pwdsave.Name = "checkBox_pwdsave";
             this.checkBox_pwdsave.Size = new System.Drawing.Size(118, 17);
             this.checkBox_pwdsave.TabIndex = 5;
@@ -158,7 +147,7 @@
             // button_connect
             // 
             this.button_connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_connect.Location = new System.Drawing.Point(583, 16);
+            this.button_connect.Location = new System.Drawing.Point(666, 16);
             this.button_connect.Name = "button_connect";
             this.button_connect.Size = new System.Drawing.Size(159, 23);
             this.button_connect.TabIndex = 4;
@@ -170,7 +159,7 @@
             // 
             this.textBox_pwd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_pwd.Location = new System.Drawing.Point(349, 42);
+            this.textBox_pwd.Location = new System.Drawing.Point(397, 42);
             this.textBox_pwd.MaximumSize = new System.Drawing.Size(128, 20);
             this.textBox_pwd.Name = "textBox_pwd";
             this.textBox_pwd.Size = new System.Drawing.Size(128, 20);
@@ -181,7 +170,7 @@
             // 
             this.textBox_login.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_login.Location = new System.Drawing.Point(349, 20);
+            this.textBox_login.Location = new System.Drawing.Point(397, 20);
             this.textBox_login.MaximumSize = new System.Drawing.Size(128, 20);
             this.textBox_login.Name = "textBox_login";
             this.textBox_login.Size = new System.Drawing.Size(128, 20);
@@ -424,7 +413,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_Drive;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewImageColumn Image;
         private System.Windows.Forms.DataGridViewTextBoxColumn ftp_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn FTP_size;

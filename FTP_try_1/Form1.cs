@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 using System.IO;
 
 
@@ -84,23 +84,6 @@ namespace FTP_try_1
 
         }
 
-
-        private void ShowLocalFiles(string s)
-        {
-            dataGridView2.Rows.Clear();
-
-            //string[] filelist = Directory.GetFileSystemEntries(@s);
-            string[] filelist = Directory.GetFiles(s);
-
-            foreach (string  current in filelist)
-            {
-                FileInfo f = new FileInfo(@s);
-                dataGridView2.Rows.Add(Properties.Resources.file, f.Name, f.CreationTime);
-
-            }
-        }
-
-
         private void ShowLocalRootFiles(object sender, EventArgs e)
         {
             try
@@ -174,19 +157,29 @@ namespace FTP_try_1
                     }
                 case (""):
                     {//назад
-                        if (true)
-                        {//сверху уже корень
 
+                        //Убираем из пути последний каталог
+                        LocalPath = LocalPath.Remove(LocalPath.LastIndexOf("\\"));
+                        LocalPath = LocalPath.Remove(LocalPath.LastIndexOf("\\") +1);
+
+
+                        if (LocalPath.LastIndexOf("\\") == 2)
+                        {//сверху уже корень     
+                            dataGridView2.Rows.Clear();
+                            ShowContents(LocalPath);
                         }
                         else
                         {//сверху не корень
-
+                            dataGridView2.Rows.Clear();
+                            dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");
+                            ShowContents(LocalPath);
                         }
                         break;
                     }
                
                 default:
-                    {// файл
+                    {// файл  - Запускаем файл, на котором клацнули.
+                        Process.Start(LocalPath + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString());
                         break;
                     }
                    
