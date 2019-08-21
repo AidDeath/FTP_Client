@@ -119,6 +119,10 @@ namespace FTP_try_1
                 client.Disconnect(TimeoutFTP);
                 toolStripStatusLabel1.Text += " -- не пройдена";
             }
+            catch (BytesRoad.Net.Ftp.FtpTimeoutException)
+            {
+                MessageBox.Show("Нет ответа от сервера", "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -306,6 +310,11 @@ namespace FTP_try_1
             toolStripStatusLabel1.Text = "Отключено";
             button_connect.Enabled = true;
             button_disconnect.Enabled = false;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {// скачать выделенный файл с фтп
+            
         }
     }
 }

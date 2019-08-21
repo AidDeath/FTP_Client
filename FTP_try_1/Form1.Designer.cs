@@ -31,6 +31,7 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_disconnect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_Drive = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button_disconnect = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -99,6 +99,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Подключение к FTP";
+            // 
+            // button_disconnect
+            // 
+            this.button_disconnect.Enabled = false;
+            this.button_disconnect.Location = new System.Drawing.Point(762, 16);
+            this.button_disconnect.Name = "button_disconnect";
+            this.button_disconnect.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_disconnect.Size = new System.Drawing.Size(128, 23);
+            this.button_disconnect.TabIndex = 10;
+            this.button_disconnect.Text = "Отключить";
+            this.button_disconnect.UseVisualStyleBackColor = true;
+            this.button_disconnect.Click += new System.EventHandler(this.Button_disconnect_Click);
             // 
             // label4
             // 
@@ -377,18 +389,6 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Свободно: ";
             // 
-            // button_disconnect
-            // 
-            this.button_disconnect.Enabled = false;
-            this.button_disconnect.Location = new System.Drawing.Point(762, 16);
-            this.button_disconnect.Name = "button_disconnect";
-            this.button_disconnect.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button_disconnect.Size = new System.Drawing.Size(128, 23);
-            this.button_disconnect.TabIndex = 10;
-            this.button_disconnect.Text = "Отключить";
-            this.button_disconnect.UseVisualStyleBackColor = true;
-            this.button_disconnect.Click += new System.EventHandler(this.Button_disconnect_Click);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(57, 563);
@@ -397,6 +397,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "Скачать с FTP на диск";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
