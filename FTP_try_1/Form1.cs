@@ -104,6 +104,9 @@ namespace FTP_try_1
 
                 ShowFTPContents();
 
+                button_connect.Enabled = false;
+                button_disconnect.Enabled = true;
+
             }
             catch(System.Net.Sockets.SocketException ex)
             {
@@ -171,8 +174,10 @@ namespace FTP_try_1
 
         private void ShowFTPContents()
         {
-            FtpItem[] ftpitem = client.GetDirectoryList(TimeoutFTP);
 
+            dataGridView1.Rows.Clear();
+            dataGridView1.Rows.Add(Properties.Resources.back, "..","","");
+            FtpItem[] ftpitem = client.GetDirectoryList(TimeoutFTP);
             foreach (FtpItem current in ftpitem)
             {                                         // Выводим папки на фтп
                 if (current.ItemType.ToString() == "Directory")
@@ -198,7 +203,7 @@ namespace FTP_try_1
             ///                           если достигнут корень - не показывать ..\
             ///                           если не достигнут - добавить ..\ 
             ///                     вызвать заполнение списком файлов
-            ///         выбран файл - ничего не делать, пока...
+            ///         выбран файл - Запустить его
             ///         
 
             switch (dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString())
@@ -247,6 +252,60 @@ namespace FTP_try_1
 
          //   MessageBox.Show(s, "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Hand);
            
+        }
+
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            {       //навигация по папкам на фтп
+
+                try
+                {
+
+
+                    switch (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString())
+                    {
+                        case ("<DIR>"):
+                            {// папка
+                                client.ChangeDirectory(TimeoutFTP, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                                ShowFTPContents();
+                                break;
+                            }
+                        case (""):
+                            {//назад
+                                client.ChangeDirectory(TimeoutFTP, "..");
+                                ShowFTPContents();
+                                break;
+                            }
+
+                        default:
+                            {// файл
+
+                                break;
+                            }
+
+                    }
+                }
+                catch(System.Net.Sockets.SocketException ex)
+                {
+                    MessageBox.Show(ex.Message, "Связь потеряна", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    toolStripStatusLabel1.Text = "Отключено";
+                    dataGridView1.Rows.Clear();
+                    button_connect.Enabled = true;
+                    button_disconnect.Enabled = false;
+                    
+                   
+                }
+            }
+        }
+
+        private void Button_disconnect_Click(object sender, EventArgs e)
+        {
+            client.Disconnect(TimeoutFTP);
+            dataGridView1.Rows.Clear();
+            toolStripStatusLabel1.Text = "Отключено";
+            button_connect.Enabled = true;
+            button_disconnect.Enabled = false;
         }
     }
 }

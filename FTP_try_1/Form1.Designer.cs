@@ -59,6 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_Drive = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.button_disconnect = new System.Windows.Forms.Button();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -76,6 +77,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.button_disconnect);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -138,7 +140,7 @@
             // 
             this.checkBox_pwdsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_pwdsave.AutoSize = true;
-            this.checkBox_pwdsave.Location = new System.Drawing.Point(687, 42);
+            this.checkBox_pwdsave.Location = new System.Drawing.Point(607, 42);
             this.checkBox_pwdsave.Name = "checkBox_pwdsave";
             this.checkBox_pwdsave.Size = new System.Drawing.Size(118, 17);
             this.checkBox_pwdsave.TabIndex = 5;
@@ -148,7 +150,7 @@
             // button_connect
             // 
             this.button_connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_connect.Location = new System.Drawing.Point(666, 16);
+            this.button_connect.Location = new System.Drawing.Point(586, 16);
             this.button_connect.Name = "button_connect";
             this.button_connect.Size = new System.Drawing.Size(159, 23);
             this.button_connect.TabIndex = 4;
@@ -240,6 +242,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(430, 478);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             // 
             // Image
             // 
@@ -256,6 +259,7 @@
             this.ftp_name.HeaderText = "Имя";
             this.ftp_name.Name = "ftp_name";
             this.ftp_name.ReadOnly = true;
+            this.ftp_name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ftp_name.Width = 220;
             // 
             // FTP_size
@@ -263,6 +267,7 @@
             this.FTP_size.HeaderText = "Размер, Кб";
             this.FTP_size.Name = "FTP_size";
             this.FTP_size.ReadOnly = true;
+            this.FTP_size.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.FTP_size.Width = 71;
             // 
             // FTP_created
@@ -270,6 +275,7 @@
             this.FTP_created.HeaderText = "Создан";
             this.FTP_created.Name = "FTP_created";
             this.FTP_created.ReadOnly = true;
+            this.FTP_created.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.FTP_created.Width = 80;
             // 
             // dataGridView2
@@ -312,6 +318,7 @@
             this.local_name.HeaderText = "Имя";
             this.local_name.Name = "local_name";
             this.local_name.ReadOnly = true;
+            this.local_name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.local_name.Width = 220;
             // 
             // local_size
@@ -319,6 +326,7 @@
             this.local_size.HeaderText = "Размер, Кб";
             this.local_size.Name = "local_size";
             this.local_size.ReadOnly = true;
+            this.local_size.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.local_size.Width = 75;
             // 
             // local_created
@@ -326,6 +334,7 @@
             this.local_created.HeaderText = "Создан";
             this.local_created.Name = "local_created";
             this.local_created.ReadOnly = true;
+            this.local_created.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.local_created.Width = 80;
             // 
             // label5
@@ -363,6 +372,18 @@
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 8;
             this.label7.Text = "Свободно: ";
+            // 
+            // button_disconnect
+            // 
+            this.button_disconnect.Enabled = false;
+            this.button_disconnect.Location = new System.Drawing.Point(762, 16);
+            this.button_disconnect.Name = "button_disconnect";
+            this.button_disconnect.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_disconnect.Size = new System.Drawing.Size(128, 23);
+            this.button_disconnect.TabIndex = 10;
+            this.button_disconnect.Text = "Отключить";
+            this.button_disconnect.UseVisualStyleBackColor = true;
+            this.button_disconnect.Click += new System.EventHandler(this.Button_disconnect_Click);
             // 
             // Form1
             // 
@@ -425,6 +446,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn local_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn local_size;
         private System.Windows.Forms.DataGridViewTextBoxColumn local_created;
+        private System.Windows.Forms.Button button_disconnect;
     }
 }
 
