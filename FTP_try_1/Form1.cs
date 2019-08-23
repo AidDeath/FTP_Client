@@ -22,6 +22,8 @@ namespace FTP_try_1
         DriveInfo[] Drives = DriveInfo.GetDrives();
         string LocalPath = "";
         FtpClient client = new FtpClient();
+        string SelectedFtpItem = "..";
+        int SelectedFtpType = 0;  // 0 - back, 1 - dir, 2 - file
         int TimeoutFTP = 30000; //Таймаут.
 
         public Form1()
@@ -246,16 +248,8 @@ namespace FTP_try_1
                     {// файл  - Запускаем файл, на котором клацнули.
                         Process.Start(LocalPath + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString());
                         break;
-                    }
-                   
-            }
-
-
-
-            
-
-         //   MessageBox.Show(s, "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-           
+                    }  
+            }  
         }
 
 
@@ -314,7 +308,95 @@ namespace FTP_try_1
 
         private void Button1_Click(object sender, EventArgs e)
         {// скачать выделенный файл с фтп
-            
+
+            if (SelectedFtpType == 0 || SelectedFtpType == 1)
+            {           // если выбран каталог или возврат
+                MessageBox.Show("Не выбран файл для скачивания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {       // если выбран файл.
+                try
+                {
+                    toolStripStatusLabel2.Text = "Загружается " + SelectedFtpItem;
+                    client.GetFile(TimeoutFTP, LocalPath + SelectedFtpItem, SelectedFtpItem);
+                    toolStripStatusLabel2.Text = "Загрузка файла окончена";
+                }
+                catch (System.UnauthorizedAccessException ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Ошибка доступа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    toolStripStatusLabel2.Text = "Ошибка загрузки файла";
+                }
+                
+                dataGridView2.Rows.Clear();
+                dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");  
+                ShowContents(LocalPath);
+            }
+        }
+
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string s = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            if (s == "..")
+            {  
+                SelectedFtpItem = "..";
+                SelectedFtpType = 0;
+            }
+            else
+            {
+                if (s == "<DIR>")
+                {
+                    SelectedFtpItem = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    SelectedFtpType = 1;
+
+                }
+                else
+                {   // выбран файл
+                    SelectedFtpItem = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    SelectedFtpType = 2;
+                }
+            }
+
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {// DTLETE TO FTP
+        
+            switch (SelectedFtpType)
+            {
+                case 0:
+                    {
+                        MessageBox.Show("Не выбран файл или папка для удаления", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                case 1:
+                    {
+                        try
+                        {
+                        client.DeleteDirectory(TimeoutFTP, SelectedFtpItem);
+                        dataGridView1.Rows.Clear();
+                        ShowFTPContents();
+                        }
+                        catch (BytesRoad.Net.Ftp.FtpErrorException)
+                        {
+                            MessageBox.Show("Каталог не пуст!", "Удаление невозможно", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        client.DeleteFile(TimeoutFTP, SelectedFtpItem);
+                        dataGridView1.Rows.Clear();
+                        ShowFTPContents();
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+
         }
     }
 }
