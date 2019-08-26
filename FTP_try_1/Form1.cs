@@ -26,6 +26,8 @@ namespace FTP_try_1
         int SelectedFtpType = 0;  // 0 - back, 1 - dir, 2 - file
         int TimeoutFTP = 30000; //Таймаут.
 
+        public string newfldname = "";
+
         public Form1()
         {
             InitializeComponent();
@@ -330,7 +332,11 @@ namespace FTP_try_1
                 }
                 
                 dataGridView2.Rows.Clear();
-                dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");  
+                if (LocalPath.Length > 3)
+                {   // Если копируется в корень диска - не добавляем ../
+                    dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");
+
+                }
                 ShowContents(LocalPath);
             }
         }
@@ -362,7 +368,7 @@ namespace FTP_try_1
         }
 
         private void Button2_Click(object sender, EventArgs e)
-        {// DTLETE TO FTP
+        {// DELETE TO FTP
         
             switch (SelectedFtpType)
             {
@@ -395,8 +401,21 @@ namespace FTP_try_1
                 default:
                     break;
             }
+        }
 
+        private void Btn_fld_create_Click(object sender, EventArgs e)
+        { // NOT FINISHED
+            Form2 FolderNameDialog = new Form2(this);
+            FolderNameDialog.Show();
 
+            if (newfldname != "")
+            {
+                client.CreateDirectory(TimeoutFTP, newfldname);
+            }
+            // Не дожидается ввода имени папки
+            newfldname = "";
+            dataGridView1.Rows.Clear();
+            ShowFTPContents();
         }
     }
 }

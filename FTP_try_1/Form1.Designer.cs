@@ -64,6 +64,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.btn_fld_create = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -391,7 +392,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(57, 563);
+            this.button1.Location = new System.Drawing.Point(21, 563);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 23);
             this.button1.TabIndex = 9;
@@ -401,7 +402,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(308, 563);
+            this.button2.Location = new System.Drawing.Point(164, 563);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
@@ -427,11 +428,22 @@
             this.button4.Text = "Удалить";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // btn_fld_create
+            // 
+            this.btn_fld_create.Location = new System.Drawing.Point(245, 563);
+            this.btn_fld_create.Name = "btn_fld_create";
+            this.btn_fld_create.Size = new System.Drawing.Size(117, 23);
+            this.btn_fld_create.TabIndex = 13;
+            this.btn_fld_create.Text = "Создать папку";
+            this.btn_fld_create.UseVisualStyleBackColor = true;
+            this.btn_fld_create.Click += new System.EventHandler(this.Btn_fld_create_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 611);
+            this.Controls.Add(this.btn_fld_create);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -498,6 +510,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btn_fld_create;
     }
 }
 
