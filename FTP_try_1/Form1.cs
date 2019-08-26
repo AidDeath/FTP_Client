@@ -333,6 +333,7 @@ namespace FTP_try_1
                     MessageBox.Show(ex.Message, "Ошибка доступа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     toolStripStatusLabel2.Text = "Ошибка загрузки файла";
                 }
+
                 
                 dataGridView2.Rows.Clear();
                 if (LocalPath.Length > 3)
@@ -400,10 +401,17 @@ namespace FTP_try_1
                     }
                 case 2:
                     {
-                        client.DeleteFile(TimeoutFTP, SelectedFtpItem);
-                        dataGridView1.Rows.Clear();
-                        ShowFTPContents();
-                        toolStripStatusLabel2.Text = "Объект " + SelectedFtpItem + " удалён";
+                        try
+                        {
+                            client.DeleteFile(TimeoutFTP, SelectedFtpItem);
+                            dataGridView1.Rows.Clear();
+                            ShowFTPContents();
+                            toolStripStatusLabel2.Text = "Объект " + SelectedFtpItem + " удалён";
+                        }
+                        catch (BytesRoad.Net.Ftp.FtpErrorException)
+                        {
+                            MessageBox.Show("Не выбран объект для удаления!", "Удаление невозможно", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }    
                         break;
                     }
                 default:
@@ -459,13 +467,6 @@ namespace FTP_try_1
             string selname = dataGridView2.SelectedRows[0].Cells[1].Value.ToString();
             string seltype = dataGridView2.SelectedRows[0].Cells[2].Value.ToString();
 
-            if (seltype != "<DIR>" && seltype != "")
-            {
-
-
-            }
-  
-
             switch (seltype)
             {
                 case ("<DIR>"):
@@ -508,6 +509,10 @@ namespace FTP_try_1
                             button4.Enabled = false;
                         }
                         catch (System.UnauthorizedAccessException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (System.IO.IOException ex)
                         {
                             MessageBox.Show(ex.Message, "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
