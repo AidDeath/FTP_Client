@@ -13,6 +13,8 @@ namespace FTP_try_1
     public partial class Form2 : Form
     {
         Form1 hForm1;
+
+        public string result;
         public Form2()
         {
             InitializeComponent();
@@ -22,18 +24,18 @@ namespace FTP_try_1
         {
             InitializeComponent();
             hForm1 = f;
-            hForm1.Enabled = false;
+           // hForm1.Enabled = false;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            hForm1.newfldname = textBox1.Text.ToString();
+            result = textBox1.Text.ToString();
             this.Close();
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            hForm1.Enabled = true;
+           // hForm1.Enabled = true;
         }
     }
 }

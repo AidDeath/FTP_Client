@@ -370,7 +370,10 @@ namespace FTP_try_1
 
         private void Button2_Click(object sender, EventArgs e)
         {// DELETE TO FTP
-        
+
+
+            //  MessageBox.Show(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+
             switch (SelectedFtpType)
             {
                 case 0:
@@ -382,9 +385,9 @@ namespace FTP_try_1
                     {
                         try
                         {
-                        client.DeleteDirectory(TimeoutFTP, SelectedFtpItem);
-                        dataGridView1.Rows.Clear();
-                        ShowFTPContents();
+                            client.DeleteDirectory(TimeoutFTP, SelectedFtpItem);
+                            dataGridView1.Rows.Clear();
+                            ShowFTPContents();
                         }
                         catch (BytesRoad.Net.Ftp.FtpErrorException)
                         {
@@ -407,19 +410,20 @@ namespace FTP_try_1
         private void Btn_fld_create_Click(object sender, EventArgs e)
         { // NOT FINISHED
             Form2 FolderNameDialog = new Form2(this);
-            FolderNameDialog.Show();
-
-
- 
+            if(FolderNameDialog.ShowDialog() == DialogResult.OK)
+            {
+                newfldname = FolderNameDialog.result;
+            }
 
             if (newfldname != "")
             {
                 client.CreateDirectory(TimeoutFTP, newfldname);
+                newfldname = "";
+                dataGridView1.Rows.Clear();
+                ShowFTPContents();
             }
-            // Не дожидается ввода имени папки
-            newfldname = "";
-            dataGridView1.Rows.Clear();
-            ShowFTPContents();
+
+
         }
 
         private void Button3_Click(object sender, EventArgs e)
