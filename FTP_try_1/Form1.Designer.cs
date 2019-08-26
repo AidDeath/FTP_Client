@@ -383,6 +383,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(21, 563);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 23);
@@ -393,6 +394,7 @@
             // 
             // button2
             // 
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(164, 563);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -403,7 +405,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(549, 563);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(529, 563);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(159, 23);
             this.button3.TabIndex = 11;
@@ -413,15 +416,18 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(815, 563);
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(785, 563);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 12;
             this.button4.Text = "Удалить";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // btn_fld_create
             // 
+            this.btn_fld_create.Enabled = false;
             this.btn_fld_create.Location = new System.Drawing.Point(245, 563);
             this.btn_fld_create.Name = "btn_fld_create";
             this.btn_fld_create.Size = new System.Drawing.Size(117, 23);

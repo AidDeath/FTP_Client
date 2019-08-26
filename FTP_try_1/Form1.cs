@@ -25,7 +25,6 @@ namespace FTP_try_1
         string SelectedFtpItem = "..";
         int SelectedFtpType = 0;  // 0 - back, 1 - dir, 2 - file
         int TimeoutFTP = 30000; //Таймаут.
-        string FileForUpload = "";
 
         public string newfldname = "";
 
@@ -59,12 +58,7 @@ namespace FTP_try_1
                 comboBox_Drive.Items.Add(d.Name);
             }
 
-           
             comboBox_Drive.SelectedIndex = 0;
-            // label7.Text += (Drives[comboBox_Drive.SelectedIndex].AvailableFreeSpace) / 1024 / 1024 + " МБайт";
-            // ShowLocalFiles(Drives[comboBox_Drive.SelectedIndex].Name);
-
-
         }
 
         private void Button_connect_Click(object sender, EventArgs e)
@@ -111,6 +105,10 @@ namespace FTP_try_1
 
                 button_connect.Enabled = false;
                 button_disconnect.Enabled = true;
+
+                button1.Enabled = true;
+                btn_fld_create.Enabled = true;
+                button3.Enabled = true;
 
             }
             catch(System.Net.Sockets.SocketException ex)
@@ -307,6 +305,10 @@ namespace FTP_try_1
             toolStripStatusLabel1.Text = "Отключено";
             button_connect.Enabled = true;
             button_disconnect.Enabled = false;
+
+            button1.Enabled = false;
+            btn_fld_create.Enabled = false;
+            button3.Enabled = false;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -343,7 +345,8 @@ namespace FTP_try_1
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        { // надо бы переделать, ликвидировать этот метод... обязательно заняться позже!
+            button2.Enabled = true;
             string s = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             if (s == "..")
             {  
@@ -370,7 +373,7 @@ namespace FTP_try_1
 
         private void Button2_Click(object sender, EventArgs e)
         {// DELETE TO FTP
-
+            button2.Enabled = false;
 
             //  MessageBox.Show(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
 
@@ -400,6 +403,7 @@ namespace FTP_try_1
                         client.DeleteFile(TimeoutFTP, SelectedFtpItem);
                         dataGridView1.Rows.Clear();
                         ShowFTPContents();
+                        toolStripStatusLabel2.Text = "Объект " + SelectedFtpItem + " удалён";
                         break;
                     }
                 default:
@@ -408,33 +412,38 @@ namespace FTP_try_1
         }
         // // / / / / / / / // / // // / ///////////////////////////////////////////////////////////
         private void Btn_fld_create_Click(object sender, EventArgs e)
-        { // NOT FINISHED
+        { // Создание папки
             Form2 FolderNameDialog = new Form2(this);
             if(FolderNameDialog.ShowDialog() == DialogResult.OK)
             {
-                newfldname = FolderNameDialog.result;
+                try
+                {
+                    client.CreateDirectory(TimeoutFTP, FolderNameDialog.result);
+                    dataGridView1.Rows.Clear();
+                    ShowFTPContents();
+                    toolStripStatusLabel2.Text = "Создана папки (папки) " + FolderNameDialog.result;
+                }
+                catch (BytesRoad.Net.Ftp.FtpErrorException)
+                {
+
+                    MessageBox.Show("Недопустимое имя папки", "Ошибка создания папки", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+                
             }
-
-            if (newfldname != "")
-            {
-                client.CreateDirectory(TimeoutFTP, newfldname);
-                newfldname = "";
-                dataGridView1.Rows.Clear();
-                ShowFTPContents();
-            }
-
-
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {// Загрузка файла на ФТП
-            if (FileForUpload != "")
+            string selname = dataGridView2.SelectedRows[0].Cells[1].Value.ToString();
+            string seltype = dataGridView2.SelectedRows[0].Cells[2].Value.ToString();
+            if (seltype != "<DIR>" && seltype != "")
             {
                 toolStripStatusLabel2.Text = "Загружается файл на FTP";
-                client.PutFile(TimeoutFTP, FileForUpload, LocalPath + FileForUpload);
+                client.PutFile(TimeoutFTP, selname, LocalPath + selname);
                 dataGridView1.Rows.Clear();
                 ShowFTPContents();
-                toolStripStatusLabel2.Text = "Файл " + FileForUpload + " загружен на FTP";
+                toolStripStatusLabel2.Text = "Файл " + selname + " загружен на FTP";
             }
             else MessageBox.Show("Не выбран файл для загрузки", "Ошибка загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -442,13 +451,70 @@ namespace FTP_try_1
 
         private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string s = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+            button4.Enabled = true;
+        }
 
-            if (s != "<DIR>" && s != "")
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            string selname = dataGridView2.SelectedRows[0].Cells[1].Value.ToString();
+            string seltype = dataGridView2.SelectedRows[0].Cells[2].Value.ToString();
+
+            if (seltype != "<DIR>" && seltype != "")
             {
-                FileForUpload = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+
             }
-            else FileForUpload = "";
+  
+
+            switch (seltype)
+            {
+                case ("<DIR>"):
+                    { // папка
+                        try
+                        {
+                           
+                            Directory.Delete(LocalPath + selname,true);
+                            //  Осторожно! Рекурсивное удаление!
+                            dataGridView2.Rows.Clear();
+                            if (LocalPath.Length > 3)
+                            {
+                                dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");
+                            }
+                            ShowContents(LocalPath);
+                            button4.Enabled = false;
+                        }
+                        catch (System.UnauthorizedAccessException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
+                    }
+                case (""):
+                    { // возврат
+                            MessageBox.Show("Не выбран элемент для удаления", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                default:
+                    { //файл
+                        try
+                        {
+                            File.Delete(LocalPath + selname);
+                            dataGridView2.Rows.Clear();
+                            if (LocalPath.Length > 3)
+                            {
+                                dataGridView2.Rows.Add(Properties.Resources.back, "../", "", "");
+                            }
+                            ShowContents(LocalPath);
+                            button4.Enabled = false;
+                        }
+                        catch (System.UnauthorizedAccessException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    break;
+            }
+
         }
     }
 }
