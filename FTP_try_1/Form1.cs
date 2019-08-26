@@ -25,6 +25,7 @@ namespace FTP_try_1
         string SelectedFtpItem = "..";
         int SelectedFtpType = 0;  // 0 - back, 1 - dir, 2 - file
         int TimeoutFTP = 30000; //Таймаут.
+        string FileForUpload = "";
 
         public string newfldname = "";
 
@@ -322,7 +323,7 @@ namespace FTP_try_1
                 {
                     toolStripStatusLabel2.Text = "Загружается " + SelectedFtpItem;
                     client.GetFile(TimeoutFTP, LocalPath + SelectedFtpItem, SelectedFtpItem);
-                    toolStripStatusLabel2.Text = "Загрузка файла окончена";
+                    toolStripStatusLabel2.Text = "Файл " + SelectedFtpItem + " скачан с FTP";
                 }
                 catch (System.UnauthorizedAccessException ex)
                 {
@@ -402,11 +403,14 @@ namespace FTP_try_1
                     break;
             }
         }
-
+        // // / / / / / / / // / // // / ///////////////////////////////////////////////////////////
         private void Btn_fld_create_Click(object sender, EventArgs e)
         { // NOT FINISHED
             Form2 FolderNameDialog = new Form2(this);
             FolderNameDialog.Show();
+
+
+ 
 
             if (newfldname != "")
             {
@@ -416,6 +420,31 @@ namespace FTP_try_1
             newfldname = "";
             dataGridView1.Rows.Clear();
             ShowFTPContents();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {// Загрузка файла на ФТП
+            if (FileForUpload != "")
+            {
+                toolStripStatusLabel2.Text = "Загружается файл на FTP";
+                client.PutFile(TimeoutFTP, FileForUpload, LocalPath + FileForUpload);
+                dataGridView1.Rows.Clear();
+                ShowFTPContents();
+                toolStripStatusLabel2.Text = "Файл " + FileForUpload + " загружен на FTP";
+            }
+            else MessageBox.Show("Не выбран файл для загрузки", "Ошибка загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+
+        private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string s = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            if (s != "<DIR>" && s != "")
+            {
+                FileForUpload = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+            else FileForUpload = "";
         }
     }
 }

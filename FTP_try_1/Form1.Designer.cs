@@ -44,7 +44,6 @@
             this.textBox_hostname = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
@@ -75,7 +74,7 @@
             // 
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(200, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(350, 17);
             this.toolStripStatusLabel2.Text = "Нет активности";
             // 
             // groupBox1
@@ -213,8 +212,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
-            this.toolStripProgressBar1});
+            this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(934, 22);
@@ -227,14 +225,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(200, 17);
             this.toolStripStatusLabel1.Text = "Нет подключения";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripProgressBar1.AutoSize = false;
-            this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(150, 3, 1, 3);
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(250, 16);
             // 
             // dataGridView1
             // 
@@ -318,6 +308,7 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(430, 450);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellClick);
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellDoubleClick);
             // 
             // dataGridViewImageColumn1
@@ -418,6 +409,7 @@
             this.button3.TabIndex = 11;
             this.button3.Text = "Загрузить на FTP с диска";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button4
             // 
@@ -488,7 +480,6 @@
         private System.Windows.Forms.TextBox textBox_hostname;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label5;
